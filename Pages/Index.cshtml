@@ -1,0 +1,142 @@
+﻿@page
+@model IndexModel
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <title>IT 08-1 Comment</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            width: 700px;
+            margin: auto;
+            border: 2px solid black;
+        }
+
+        .title {
+            background-color: #00b050;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 20px 90px;
+        }
+
+        .profile,
+        .comment-form,
+        .comment-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            background-color: #4472c4;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .name {
+            font-weight: bold;
+        }
+
+        .date {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .post-image {
+            width: 100%;
+            /* height: 260px; */
+            object-fit: cover;
+            margin: 15px 0;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .comment-text {
+            padding-top: 2px;
+        }
+
+        .comment-input-area {
+            flex: 1;
+        }
+
+        .comment-input {
+            width: 100%;
+            max-width: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">IT 08-1</div>
+
+        <div class="content">
+            <div class="profile">
+                <div class="avatar">C</div>
+                <div>
+                    <div class="name">Change can</div>
+                    <div class="date">16 October 2021 16:00</div>
+                </div>
+            </div>
+
+            <img class="post-image"
+                 src="https://cdn.britannica.com/86/166986-050-4CEFE5DE/cute-kitten-and-puppy-outdoors-in-grass.jpg"
+                 alt="Dog and cat" />
+
+            <form method="post" class="comment-form">
+                <div class="avatar">B</div>
+
+                <div class="comment-input-area">
+                    <div class="name">Blend 285</div>
+
+                    <input asp-for="CommentText"
+                           class="comment-input"
+                           placeholder="Comment"
+                           autocomplete="off"
+                           autofocus
+                           onkeydown="if(event.key === 'Enter'){ this.form.submit(); }" />
+                </div>
+            </form>
+
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="comment-item">
+                    <div class="avatar">B</div>
+                    <div class="comment-text">
+                        <div class="name">Blend 285</div>
+                        <div>@comment.Text</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
